@@ -13,8 +13,8 @@ public class LoginPage {
         this.driver = driver;
     }
 
-    public PasswordPage loginUser() {
-        driver.findElement(loginField).sendKeys("simbtask");
+    public PasswordPage loginUser(String login) {
+        driver.findElement(loginField).sendKeys(login);
         driver.findElement(loginBtn).click();
         return new PasswordPage(driver);
     }

@@ -8,6 +8,7 @@ import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import ru.simbirsoft.web.data.DataHelper;
 import ru.simbirsoft.web.pages.*;
 
 import java.net.MalformedURLException;
@@ -39,12 +40,12 @@ public class MailInboxTests {
         driver.get("https://mail.yandex.ru/");
         StartPage startPage = new StartPage(driver);
         LoginPage loginPage = startPage.clickLoginBtn();
-        PasswordPage passwordPage = loginPage.loginUser();
-        MailboxPage mailboxPage = passwordPage.passwUser();
+        PasswordPage passwordPage = loginPage.loginUser(DataHelper.getLogin());
+        MailboxPage mailboxPage = passwordPage.passwUser(DataHelper.getPassword());
         int amountMail = mailboxPage.getAmountMail();
         assertEquals(3,amountMail);
         ComposeMailPage composeMailPage = mailboxPage.createNewMail();
-        composeMailPage.composeMail(Integer.toString(amountMail));
+        composeMailPage.composeMail(Integer.toString(amountMail),DataHelper.getAddressMail(),DataHelper.getSubjectMail());
         assertEquals("Письмо отправлено",composeMailPage.getSuccessAlert());
     }
 

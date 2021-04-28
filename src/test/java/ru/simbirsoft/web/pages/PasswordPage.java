@@ -13,8 +13,8 @@ public class PasswordPage {
         this.driver = driver;
     }
 
-    public MailboxPage passwUser() {
-        driver.findElement(passwordField).sendKeys("wy6)&1SS");
+    public MailboxPage passwUser(String password) {
+        driver.findElement(passwordField).sendKeys(password);
         driver.findElement(passwordBtn).click();
         return new MailboxPage(driver);
     }

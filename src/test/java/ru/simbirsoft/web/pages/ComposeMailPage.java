@@ -1,7 +1,7 @@
 package ru.simbirsoft.web.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
 public class ComposeMailPage {
@@ -18,18 +18,10 @@ public class ComposeMailPage {
         this.driver = driver;
     }
 
-    public void composeMail(String amountMail) {
-        String js = "arguments[0].innerHTML += 'simbtask@yandex.ru'";
-        ((JavascriptExecutor) driver).executeScript(js, driver.findElement(addressField));
-
-        driver.findElement(subjectField).sendKeys("Simbirsoft Тестовое задание. Родионов");
-
-        String js1 = "arguments[0].innerHTML = '"+amountMail+"'";
-        ((JavascriptExecutor) driver).executeScript(js1, driver.findElement(mailTextWrapper));
-
-        String js2 = "arguments[0].innerHTML = '"+amountMail+"'";
-        ((JavascriptExecutor) driver).executeScript(js2, driver.findElement(mailTextArea));
-
+    public void composeMail(String amountMail, String to, String subject) {
+        driver.findElement(addressField).sendKeys(Keys.chord(to));
+        driver.findElement(subjectField).sendKeys(subject);
+        driver.findElement(mailTextWrapper).sendKeys(Keys.chord(amountMail));
         driver.findElement(composeBtn).click();
     }
 
