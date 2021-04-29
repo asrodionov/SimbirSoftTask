@@ -10,7 +10,6 @@ public class ComposeMailPage {
     private final By addressField = By.cssSelector(".MultipleAddressesDesktop-Field .composeYabbles");
     private final By subjectField = By.className("ComposeSubject-TextField");
     private final By mailTextWrapper = By.cssSelector(".cke_contents_ltr div");
-    private final By mailTextArea = By.cssSelector(".composeReact__message-body textarea");
     private final By composeBtn = By.className("ComposeSendButton");
     private final By successAlert = By.className("ComposeDoneScreen-Title");
 
